@@ -13,7 +13,9 @@ interface EstablishmentsTableProps {
   // onRowClick: (establishment: { [key: string]: string }) => void;
 }
 
-export const EstablishmentsTable: React.FC<EstablishmentsTableProps> = ({
+export const EstablishmentsFavouritesTable: React.FC<
+  EstablishmentsTableProps
+> = ({
   establishments,
   // onRowClick,
 }) => {
@@ -42,6 +44,6 @@ export const EstablishmentsTable: React.FC<EstablishmentsTableProps> = ({
   );
 };
 
-EstablishmentsTable.propTypes = {
+EstablishmentsFavouritesTable.propTypes = {
   establishments: PropTypes.array,
 };
