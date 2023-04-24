@@ -1,20 +1,17 @@
 import React from "react";
 import { EstablishmentsTableRow } from "./EstablishmentsTableRow";
 import PropTypes from "prop-types";
-
-const headerStyle: { [key: string]: string | number } = {
-  paddingBottom: "10px",
-  textAlign: "left",
-  fontSize: "20px",
-};
+import { headerStyle } from "../styles";
 
 interface EstablishmentsTableProps {
   establishments: { [key: string]: string }[] | null | undefined;
+  onCheck: (id: string, checked: boolean) => void;
   // onRowClick: (establishment: { [key: string]: string }) => void;
 }
 
 export const EstablishmentsTable: React.FC<EstablishmentsTableProps> = ({
   establishments,
+  onCheck,
   // onRowClick,
 }) => {
   return (
@@ -33,6 +30,7 @@ export const EstablishmentsTable: React.FC<EstablishmentsTableProps> = ({
               <EstablishmentsTableRow
                 key={index}
                 establishment={establishment}
+                onCheck={onCheck}
                 // onClick={() => onRowClick(establishment)}
               />
             )

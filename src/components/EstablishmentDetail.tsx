@@ -1,9 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-// interface EstablishmentDetailParams {
-//   establishment: { [key: string]: string | null };
-// }
-
 const DetailStyle: { [key: string]: string | number } = {
   background: "rgba(51, 51, 51, 0.9)",
   padding: "10px",

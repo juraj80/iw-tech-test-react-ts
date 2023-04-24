@@ -1,5 +1,5 @@
 import React from "react";
-import { EstablishmentsTableRow } from "./EstablishmentsTableRow";
+import { EstablishmentsFavouritesTableRow } from "./EstablishmentsFavouritesTableRow";
 import PropTypes from "prop-types";
 
 const headerStyle: { [key: string]: string | number } = {
@@ -10,15 +10,12 @@ const headerStyle: { [key: string]: string | number } = {
 
 interface EstablishmentsTableProps {
   establishments: { [key: string]: string }[] | null | undefined;
-  // onRowClick: (establishment: { [key: string]: string }) => void;
+  onDelete: (id: string) => void;
 }
 
 export const EstablishmentsFavouritesTable: React.FC<
   EstablishmentsTableProps
-> = ({
-  establishments,
-  // onRowClick,
-}) => {
+> = ({ establishments, onDelete }) => {
   return (
     <table>
       <tbody>
@@ -32,10 +29,10 @@ export const EstablishmentsFavouritesTable: React.FC<
               establishment: { [key: string]: string } | null | undefined,
               index: React.Key | null | undefined
             ) => (
-              <EstablishmentsTableRow
+              <EstablishmentsFavouritesTableRow
                 key={index}
                 establishment={establishment}
-                // onClick={() => onRowClick(establishment)}
+                onDelete={onDelete}
               />
             )
           )}

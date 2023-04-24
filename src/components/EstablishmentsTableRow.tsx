@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const EstablishmentsTableRow: React.FC<{
   establishment: { [key: string]: string } | null | undefined;
-}> = ({ establishment }) => {
+  onCheck: (id: string, checked: boolean) => void;
+}> = ({ establishment, onCheck }) => {
   const establishmentPath = `/establishment/${establishment?.FHRSID}`;
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onCheck(establishment?.FHRSID || "", event.target.checked);
+  };
 
   return (
     <tr>
@@ -14,6 +20,14 @@ export const EstablishmentsTableRow: React.FC<{
         </Link>
       </td>
       <td>{establishment?.RatingValue}</td>
+      <td>
+        <input
+          type="checkbox"
+          id="checkbox"
+          // checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </td>
     </tr>
   );
 };
