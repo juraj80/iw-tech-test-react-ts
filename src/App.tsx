@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import HomePage from "./components/HomePage";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { EstablishmentDetail } from "./components/EstablishmentDetail";
 
 class App extends Component {

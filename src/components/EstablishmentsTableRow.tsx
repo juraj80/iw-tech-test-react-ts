@@ -1,30 +1,39 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import EstablishmentsContext from "../context/EstablishmentsContext";
 
-export const EstablishmentsTableRow: React.FC<{
-  establishment: { [key: string]: string } | null | undefined;
-  onCheck: (id: string, checked: boolean) => void;
-}> = ({ establishment, onCheck }) => {
+type EstablishmentsTableRowProps = {
+  establishment: { [key: string]: string };
+};
+
+export const EstablishmentsTableRow: React.FC<EstablishmentsTableRowProps> = ({
+  establishment,
+}) => {
   const establishmentPath = `/establishment/${establishment?.FHRSID}`;
 
+  const { checkedEstablishments, checkEstablishment } = useContext(
+    EstablishmentsContext
+  );
+
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onCheck(establishment?.FHRSID || "", event.target.checked);
+    checkEstablishment(establishment, event.target.checked);
   };
+
+  const isChecked = checkedEstablishments[establishment.FHRSID] ? true : false;
 
   return (
     <tr>
       <td>
         <Link to={establishmentPath} state={{ establishment }}>
-          {/* <Link to={{ pathname: establishmentPath, state: { establishment } }}> */}
-          {establishment?.BusinessName}
+          {establishment.BusinessName}
         </Link>
       </td>
-      <td>{establishment?.RatingValue}</td>
+      <td>{establishment.RatingValue}</td>
       <td>
         <input
           type="checkbox"
           id="checkbox"
-          // checked={isChecked}
+          checked={isChecked}
           onChange={handleCheckboxChange}
         />
       </td>

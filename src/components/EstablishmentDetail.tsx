@@ -1,17 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
-const DetailStyle: { [key: string]: string | number } = {
-  background: "rgba(51, 51, 51, 0.9)",
-  padding: "10px",
-  width: "max-content",
-  marginLeft: "50px",
-  color: "white",
-  fontSize: "20px",
-};
+import { DetailStyle } from "./EstablishmentDetail.styles";
 
 export const EstablishmentDetail: React.FC = () => {
-  //   const { establishmentId } = useParams<{ establishmentId: string }>();
-
   const location = useLocation();
   const establishment = location.state.establishment;
 

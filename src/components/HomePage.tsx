@@ -1,5 +1,7 @@
 import { PaginatedEstablishmentsTable } from "./PaginatedEstablishmentsTable";
 import Background from "../static/logo.svg";
+import { EstablishmentLoader } from "./EstablishmentLoader";
+import { EstablishmentsFavouritesTable } from "./EstablishmentsFavouritesTable";
 
 const logoStyle: { [key: string]: string | number } = {
   width: "640px",
@@ -12,7 +14,10 @@ const HomePage = () => {
   return (
     <div>
       <header style={logoStyle} />
-      <PaginatedEstablishmentsTable />
+      <EstablishmentLoader>
+        <PaginatedEstablishmentsTable />
+        <EstablishmentsFavouritesTable />
+      </EstablishmentLoader>
     </div>
   );
 };

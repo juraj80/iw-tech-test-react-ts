@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { EstablishmentsTableRow } from "./EstablishmentsTableRow";
-import PropTypes from "prop-types";
 import { headerStyle } from "../styles";
+import EstablishmentsContext from "../context/EstablishmentsContext";
 
-interface EstablishmentsTableProps {
-  establishments: { [key: string]: string }[] | null | undefined;
-  onCheck: (id: string, checked: boolean) => void;
-  // onRowClick: (establishment: { [key: string]: string }) => void;
-}
+type EstablishmentsTableProps = {
+  selectedAuthority: string;
+};
 
-export const EstablishmentsTable: React.FC<EstablishmentsTableProps> = ({
-  establishments,
-  onCheck,
-  // onRowClick,
-}) => {
+export const EstablishmentsTable = (props: EstablishmentsTableProps) => {
+  const { establishments } = useContext(EstablishmentsContext);
+
+  const filteredEstablishments = establishments.filter((establishment) => {
+    return establishment.LocalAuthorityBusinessID === props.selectedAuthority;
+  });
+
+  const tableData = props.selectedAuthority
+    ? filteredEstablishments
+    : establishments;
+
   return (
     <table>
       <tbody>
@@ -21,25 +25,19 @@ export const EstablishmentsTable: React.FC<EstablishmentsTableProps> = ({
           <th style={headerStyle}>Business Name</th>
           <th style={headerStyle}>Rating Value</th>
         </tr>
-        {establishments &&
-          establishments?.map(
+        {tableData &&
+          tableData?.map(
             (
-              establishment: { [key: string]: string } | null | undefined,
+              establishment: { [key: string]: string },
               index: React.Key | null | undefined
             ) => (
               <EstablishmentsTableRow
                 key={index}
                 establishment={establishment}
-                onCheck={onCheck}
-                // onClick={() => onRowClick(establishment)}
               />
             )
           )}
       </tbody>
     </table>
   );
-};
-
-EstablishmentsTable.propTypes = {
-  establishments: PropTypes.array,
 };
